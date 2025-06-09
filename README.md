@@ -70,7 +70,9 @@ For each consecutive triplet of points $p_{i-1}, p_i, p_{i+1}$ we compute the sl
 - Slope between $p_{i-1}$ and $p_{i+1}$
 - Slope between $p_{i-1}$ and $p_{i}$
 
-If the difference between the two slopes is below a threshold, then the middle point is considered to be part of a straight line and can be discarded and the procedure is repeated with the point $p_{i+1}$ as the middle point. Else the middle point is kept and the window of calculation is moved by one point.
+If the difference between the two slopes is below a threshold, then the middle point is considered to be part of a straight line and can be discarded and the procedure is repeated with the point $p_{i+1}$ as the middle point. Otherwise, the middle point is kept and the window of calculation is moved by one point.
+
+Finally, since most advanced control approaches require the full trajectory to ensure accurate tracking, we use spline functions to construct polynomials that represent the path as a function of time. This way, we can get polynomials that represent the velocity and acceleration of the robot.
 
 ### Controller Design
 
@@ -81,4 +83,10 @@ The feedback linearization method tries to:
 
 - Feedback: Apply corrections based on tracking error to steer the robot back to the trajectory.
 
-The main idea is to express the error in a rotated frame aligned with the robot’s heading so that the control becomes simpler and more intuitive.
+The main idea is to express the error in a rotated frame aligned with the robot’s heading so that the control becomes simpler and more intuitive:
+
+The reference trajectory:
+
+$$
+T = M.a
+$$
