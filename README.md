@@ -88,5 +88,5 @@ The main idea is to express the error in a rotated frame aligned with the robotâ
 The reference trajectory:
 
 $$
-T = M.a
+v_d = \sqrt{\dot{x}_d^2 + \dot{x}_d^2} 
 $$
