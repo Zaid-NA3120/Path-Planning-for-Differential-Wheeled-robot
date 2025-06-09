@@ -65,6 +65,7 @@ After generating a path using the planner (A* or Potential Field), the initial t
 
 To optimize the path and reduce unnecessary points, we implemented a point filtering method based on slope comparison. This method preserves only the turning points (key waypoints) that represent a change in direction.
 #### Algorithm description
+
 For each consecutive triplet of points $P_{i-1}, P_i, P_{i+1}$ we compute the slopes of the two line segments:
 
 ### Controller Design
