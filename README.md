@@ -58,7 +58,11 @@ ros2 launch my_robot_bringup robot_navigation.launch.py goal_x:=4.0 goal_y:=2.0
 #### A*
 
 The A* pathfinding algorithm is an informed, best-first search algorithm that efficiently finds the least-cost path from a start node to a goal node. It operates by maintaining a priority queue (often implemented as a min-heap) of paths, extending them one edge at a time based on a cost evaluation function:
-$$ f(n)=g(n)+h(n) $$
+
+$$ 
+f(n)=g(n)+h(n)
+$$
+
 Here:
 
 $g(n)$ is the exact cost from the start node to the current node $n$, $h(n)$ is a heuristic estimate of the cost from $n$ to the goal.
