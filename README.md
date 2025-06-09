@@ -73,3 +73,12 @@ For each consecutive triplet of points $p_{i-1}, p_i, p_{i+1}$ we compute the sl
 If the difference between the two slopes is below a threshold, then the middle point is considered to be part of a straight line and can be discarded and the procedure is repeated with the point $p_{i+1}$ as the middle point. Else the middle point is kept and the window of calculation is moved by one point.
 
 ### Controller Design
+
+A differential-drive robot follows nonlinear kinematics, due to its dependence on orientation for motion. Controlling such a system directly is tricky because changes in the control input (linear and angular velocities) don't result in direct, linear changes in its pose.
+The feedback linearization method tries to:
+
+- Feedforward: Use the desired trajectory to compute nominal control inputs $(v_d, \omega_d)$
+
+- Feedback: Apply corrections based on tracking error to steer the robot back to the trajectory.
+
+The main idea is to express the error in a rotated frame aligned with the robot’s heading so that the control becomes simpler and more intuitive.
