@@ -112,3 +112,15 @@ $$
 $$
 e_{\theta} = \theta_d - \theta
 $$
+
+These equations represent the positional error projected into the robot’s coordinate frame, which makes the control independent of the global orientation. This is useful because it avoids having to control in a global coordinate system where orientation causes nonlinear effects.
+
+Control law:
+
+$$
+v = v_d + k_1 e_x
+$$
+
+$$
+\omega = \omega_d + k_2 e_y + k_3 sin(e_{\theta})
+$$
