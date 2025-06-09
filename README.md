@@ -51,3 +51,4 @@ source install/setup.bash
 ```   
 ros2 launch my_robot_bringup robot_navigation.launch.py goal_x:=4.0 goal_y:=2.0
 ```
+## System Design and Algorithms
