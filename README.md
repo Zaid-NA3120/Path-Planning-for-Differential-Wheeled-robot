@@ -118,7 +118,7 @@ These equations represent the positional error projected into the robot’s coor
 Control law:
 
 $$
-v = v_d + k_1 e_x
+v = v_d cos(e_\theta) + k_1 e_x
 $$
 
 $$
