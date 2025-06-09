@@ -57,6 +57,38 @@ ros2 launch my_robot_bringup robot_navigation.launch.py goal_x:=4.0 goal_y:=2.0
 
 #### A*
 
+The A* pathfinding algorithm is an informed, best-first search algorithm that efficiently finds the least-cost path from a start node to a goal node. It operates by maintaining a priority queue (often implemented as a min-heap) of paths, extending them one edge at a time based on a cost evaluation function:
+$$ f(n)=g(n)+h(n) $$
+Here:
+
+$g(n)$ is the exact cost from the start node to the current node $n$, $h(n)$ is a heuristic estimate of the cost from $n$ to the goal.
+
+The choice of the heuristic function $h(n)$ is critical. It must be admissible, meaning it never overestimates the true cost to the goal. Under this condition, A* is guaranteed to find an optimal (least-cost) path.
+
+In the context of a differential drive robotic model, we employ an 8-connectivity grid map to represent the robot's environment. The robot's movement is discretized into four primitive actions:
+- Move forward
+- Move backward
+- Turn left (in place)
+- Turn right (in place)
+
+Motion along the primary axes and 45-degree turns are assigned a base cost of 5. Diagonal motions, which are more computationally expensive, incur a cost of 7, approximating $5 \times \sqrt{2}$ These costs help A* prioritize smoother and more feasible paths for the robot.
+
+#### RRT (Rapidly-exploring Random Tree)
+
+RRT is a sampling-based path planning algorithm designed for efficiently searching nonconvex, high-dimensional spaces. It is particularly effective in scenarios with complex constraints, such as robot motion planning in dynamic or cluttered environments.
+
+RRT incrementally builds a tree rooted at the start configuration by randomly sampling the search space. The algorithm attempts to grow the tree toward each sampled point by extending the nearest existing node in the tree in the direction of the sample, subject to motion constraints and obstacle avoidance.
+The basic RRT algorithm follows these steps:
+1. Sample a random configuration in the space.
+2. Find the nearest node in the existing tree to this sample.
+3. Extend the tree by moving a fixed step size from the nearest node toward the sample.
+4. Add the new node to the tree if the motion is collision-free.
+5. Repeat until the goal is reached or a termination condition is met.
+
+RRT is probabilistically complete, meaning that as the number of samples increases, the probability of finding a path (if one exists) approaches 1. However, it does not guarantee the shortest path. Variants such as RRT* improve upon this by introducing path optimization, converging toward the optimal solution over time.
+
+For differential drive robots, the extension step must adhere to kinematic constraints—ensuring the new node is reachable under the robot’s motion capabilities. This is done by discretizing robot movements when growing the tree.
+
 #### Potential Field
 
 ### Path Smoothing and Trajectory Generating
