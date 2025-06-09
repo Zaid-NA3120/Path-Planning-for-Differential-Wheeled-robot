@@ -89,6 +89,6 @@ The reference trajectory:
 
 $$
 v_d = \sqrt{\dot{x}_d^2 + \dot{y}_d^2} 
-theta_d = atan2(y_d, x_d}
+theta_d = atan2(y_d, x_d)
 \omega_d = \frac{\ddot{y}_d. \dot{x}_d - \ddot{x}_d. \dot{y}_d}{\dot{x}_d^2 + \dot{y}_d^2}
 $$
