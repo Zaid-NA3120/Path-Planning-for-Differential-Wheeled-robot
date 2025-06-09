@@ -92,9 +92,23 @@ v_d = \sqrt{\dot{x}_d^2 + \dot{y}_d^2}
 $$
 
 $$
-theta_d = atan2(y_d, x_d) \\
+\theta_d = atan2(y_d, x_d) \\
 $$
 
 $$
 \omega_d = \frac{\ddot{y}_d. \dot{x}_d - \ddot{x}_d. \dot{y}_d}{\dot{x}_d^2 + \dot{y}_d^2}
+$$
+
+Define the tracking error relative to the robot's frame:
+
+$$
+e_x = cos(\theta) (x_d - x) + sin(\theta) (y_d - y)
+$$
+
+$$
+e_y = -sin(\theta) (x_d - x) + cos(\theta) (y_d - y)
+$$
+
+$$
+e_{\theta} = \theta_d - \theta
 $$
