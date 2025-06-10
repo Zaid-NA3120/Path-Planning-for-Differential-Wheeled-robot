@@ -77,6 +77,8 @@ In the context of a differential drive robotic model, we employ an 8-connectivit
 
 Motion along the primary axes and 45-degree turns are assigned a base cost of 5. Diagonal motions, which are more computationally expensive, incur a cost of 7, approximating $5 \times \sqrt{2}$ These costs help A* prioritize smoother and more feasible paths for the robot.
 
+![](https://github.com/Zaid-NA3120/Path-Planning-for-Differential-Wheeled-robot/blob/main/astar_motion_gif.gif)
+
 #### RRT (Rapidly-exploring Random Tree)
 
 RRT is a sampling-based path planning algorithm designed for efficiently searching nonconvex, high-dimensional spaces. It is particularly effective in scenarios with complex constraints, such as robot motion planning in dynamic or cluttered environments.
@@ -92,6 +94,8 @@ The basic RRT algorithm follows these steps:
 RRT is probabilistically complete, meaning that as the number of samples increases, the probability of finding a path (if one exists) approaches 1. However, it does not guarantee the shortest path. Variants such as RRT* improve upon this by introducing path optimization, converging toward the optimal solution over time.
 
 For differential drive robots, the extension step must adhere to kinematic constraints—ensuring the new node is reachable under the robot’s motion capabilities. This is done by discretizing robot movements when growing the tree.
+
+![](https://github.com/Zaid-NA3120/Path-Planning-for-Differential-Wheeled-robot/blob/main/rrt_motion_gif.gif)
 
 #### Potential Field
 
@@ -128,6 +132,8 @@ $$
 where $$k_{rep}$$ is the repulsive gain, $$d(x,y)$$ is the distance to the nearest obstacle, and $$d_0$$ is the repulsion influence radius.
 
 To navigate using the potential field, the robot follows the negative gradient of the field. However, because differential-drive robots are subject to non-holonomic constraints, traditional gradient is not feasable. To address this, the planner restricts the robot's movement to discrete angular turns and forward steps. At each iteration, it evaluates a set of possible actions - such as turning or moving forward - and selects the one that minimizes the cumulative potential over a short simulated rollout.
+
+![](https://github.com/Zaid-NA3120/Path-Planning-for-Differential-Wheeled-robot/blob/main/pf_motion.gif)
 
 ### Path Smoothing and Trajectory Generating
 
