@@ -95,6 +95,33 @@ For differential drive robots, the extension step must adhere to kinematic const
 
 #### Potential Field
 
+The Potential Field method is a classic path planning approach inspired by physical forces. The robot is treated as a point under the influence of an artificial potential field:
+
+- Attractive forces pull the robot toward the goal.
+- Repulsive forces push it away from obstacles.
+The total potential at a point is the sum of the attractive and repulsive forces.
+
+$$
+U(x,y) = U_{att}(x,y) + U_{rep}(x,y)
+$$
+
+The attractive potential:
+$$
+U_{att}(x,y) = \frac{1}{2} k_{att} \cdot [(x-x_g)^2 + (y-y_g)^2] 
+$$
+where $$k_att$$ is the attractive gain and $$(x_g,y_g)$$ is the goal coordinate.
+
+The repulsive potential:
+$$
+U_{rep}(x,y) = \left\{ \begin{array}{rcl}
+\frac{1}{2} k_{rep} (\frac{1}{d(x,y)} - \frac{1}{d_0})^2 & \mbox{, if}
+& d(x,y) \leq d_0 \\ 0 & \mbox{, if} & d(x,y) > d_0 
+\end{array}\right
+$$
+where $$k_{rep}$$ is the repulsive gain, $$d(x,y)$$ is the distance to the nearest obstacle, and $$d_0$$ is the repulsion influence radius.
+
+
+
 ### Path Smoothing and Trajectory Generating
 
 After generating a path using the planner (A* or Potential Field), the initial trajectory typically contains many intermediate points that are redundant for a differential mobile robot (DMR) to follow, especially in straight segments.
