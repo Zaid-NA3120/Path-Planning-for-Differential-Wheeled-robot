@@ -99,6 +99,7 @@ The Potential Field method is a classic path planning approach inspired by physi
 
 - Attractive forces pull the robot toward the goal.
 - Repulsive forces push it away from obstacles.
+
 The total potential at a point is the sum of the attractive and repulsive forces.
 
 $$
@@ -106,21 +107,27 @@ U(x,y) = U_{att}(x,y) + U_{rep}(x,y)
 $$
 
 The attractive potential:
+
 $$
 U_{att}(x,y) = \frac{1}{2} k_{att} \cdot [(x-x_g)^2 + (y-y_g)^2] 
 $$
-where $$k_att$$ is the attractive gain and $$(x_g,y_g)$$ is the goal coordinate.
+
+where $$k_{att}$$ is the attractive gain and $$(x_g,y_g)$$ is the goal coordinate.
 
 The repulsive potential:
+
 $$
-U_{rep}(x,y) = \left\{ \begin{array}{rcl}
-\frac{1}{2} k_{rep} (\frac{1}{d(x,y)} - \frac{1}{d_0})^2 & \mbox{, if}
-& d(x,y) \leq d_0 \\ 0 & \mbox{, if} & d(x,y) > d_0 
-\end{array}\right.
+U_{rep}(x,y) = \left\lbrace
+\begin{array}{ll}
+    \frac{1}{2} k_{rep} (\frac{1}{d(x,y)} - \frac{1}{d_0})^2 & \mbox{, if} & d(x,y) \leq d_0 \\ 
+0 & \mbox{, if} & d(x,y) > d_0 
+\end{array}
+\right.
 $$
+
 where $$k_{rep}$$ is the repulsive gain, $$d(x,y)$$ is the distance to the nearest obstacle, and $$d_0$$ is the repulsion influence radius.
 
-
+To navigate using the potential field, the robot follows the negative gradient of the field. However, because differential-drive robots are subject to non-holonomic constraints, traditional gradient is not feasable. To address this, the planner restricts the robot's movement to discrete angular turns and forward steps. At each iteration, it evaluates a set of possible actions - such as turning or moving forward - and selects the one that minimizes the cumulative potential over a short simulated rollout.
 
 ### Path Smoothing and Trajectory Generating
 
