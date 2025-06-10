@@ -2,7 +2,7 @@
 
 
 ## Overview
-This repository provides an implementation of two path planning algorithms — A* and Potential Field — integrated within ROS2 and the Gazebo simulator. Both algorithms have been specifically adapted to respect the nonholonomic constraints of a differential wheeled mobile robot (DMR). Traditional versions of these algorithms assume holonomic robots capable of moving in any direction, which is not applicable to DMRs.
+This repository provides an implementation of three path planning algorithms — A*, RRT and Potential Field — integrated within ROS2 and the Gazebo simulator. These algorithms have been specifically adapted to respect the non-holonomic constraints of a differential wheeled mobile robot (DMR). Traditional versions of these algorithms assume holonomic robots capable of moving in any direction, which is not applicable to DMRs.
 
 To ensure the generated trajectories are feasible and executable by the robot, we implemented a path smoothing and control module using spline functions combined with kinematics-based feedback control.
 
