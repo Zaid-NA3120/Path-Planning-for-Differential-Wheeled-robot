@@ -116,7 +116,7 @@ $$
 U_{rep}(x,y) = \left\{ \begin{array}{rcl}
 \frac{1}{2} k_{rep} (\frac{1}{d(x,y)} - \frac{1}{d_0})^2 & \mbox{, if}
 & d(x,y) \leq d_0 \\ 0 & \mbox{, if} & d(x,y) > d_0 
-\end{array}\right
+\end{array}\right.
 $$
 where $$k_{rep}$$ is the repulsive gain, $$d(x,y)$$ is the distance to the nearest obstacle, and $$d_0$$ is the repulsion influence radius.
 
