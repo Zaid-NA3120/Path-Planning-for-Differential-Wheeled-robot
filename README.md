@@ -95,7 +95,6 @@ RRT is probabilistically complete, meaning that as the number of samples increas
 
 For differential drive robots, the extension step must adhere to kinematic constraints—ensuring the new node is reachable under the robot’s motion capabilities. This is done by discretizing robot movements when growing the tree.
 
-![](https://github.com/Zaid-NA3120/Path-Planning-for-Differential-Wheeled-robot/blob/main/rrt_motion_gif.gif)
 
 #### Potential Field
 
